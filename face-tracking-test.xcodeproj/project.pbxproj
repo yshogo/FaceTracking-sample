@@ -15,6 +15,8 @@
 		37ACE8EC23125DCC00B842A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE8EA23125DCC00B842A2 /* LaunchScreen.storyboard */; };
 		37ACE8F723125DCC00B842A2 /* face_tracking_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACE8F623125DCC00B842A2 /* face_tracking_testTests.swift */; };
 		37ACE90223125DCC00B842A2 /* face_tracking_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACE90123125DCC00B842A2 /* face_tracking_testUITests.swift */; };
+		37ACE91023127B7C00B842A2 /* sample_test.scn in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE90F23127B7C00B842A2 /* sample_test.scn */; };
+		37ACE91223127EEA00B842A2 /* overlayModel.scn in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE91123127EEA00B842A2 /* overlayModel.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		37ACE8FD23125DCC00B842A2 /* face-tracking-testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "face-tracking-testUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37ACE90123125DCC00B842A2 /* face_tracking_testUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = face_tracking_testUITests.swift; sourceTree = "<group>"; };
 		37ACE90323125DCC00B842A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37ACE90F23127B7C00B842A2 /* sample_test.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = sample_test.scn; sourceTree = "<group>"; };
+		37ACE91123127EEA00B842A2 /* overlayModel.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = overlayModel.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,12 @@
 				37ACE8DF23125DCB00B842A2 /* AppDelegate.swift */,
 				37ACE8E123125DCB00B842A2 /* art.scnassets */,
 				37ACE8E323125DCB00B842A2 /* ViewController.swift */,
+				37ACE91123127EEA00B842A2 /* overlayModel.scn */,
 				37ACE8E523125DCB00B842A2 /* Main.storyboard */,
 				37ACE8E823125DCC00B842A2 /* Assets.xcassets */,
 				37ACE8EA23125DCC00B842A2 /* LaunchScreen.storyboard */,
 				37ACE8ED23125DCC00B842A2 /* Info.plist */,
+				37ACE90F23127B7C00B842A2 /* sample_test.scn */,
 			);
 			path = "face-tracking-test";
 			sourceTree = "<group>";
@@ -233,7 +239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				37ACE8E223125DCB00B842A2 /* art.scnassets in Resources */,
+				37ACE91223127EEA00B842A2 /* overlayModel.scn in Resources */,
 				37ACE8EC23125DCC00B842A2 /* LaunchScreen.storyboard in Resources */,
+				37ACE91023127B7C00B842A2 /* sample_test.scn in Resources */,
 				37ACE8E923125DCC00B842A2 /* Assets.xcassets in Resources */,
 				37ACE8E723125DCB00B842A2 /* Main.storyboard in Resources */,
 			);

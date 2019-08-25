@@ -10,50 +10,55 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     private var faceGeometory: ARSCNFaceGeometry!
     private var faceNode: SCNNode!
     
+    private let sampeTest: SCNReferenceNode? = {
+        let path = Bundle.main.path(forResource: "overlayModel", ofType: "scn")!
+        let url = URL(fileURLWithPath: path)
+        return SCNReferenceNode(url: url)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
-        sceneView.showsStatistics = true
+        sceneView.showsStatistics = false
+        // 自動ロックをオフにしておく
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard ARFaceTrackingConfiguration.isSupported else { return }
-        guard let device = sceneView.device else { return }
-        
-        faceGeometory = ARSCNFaceGeometry(device: device)
-        
-        if let material = faceGeometory.firstMaterial {
-            material.diffuse.contents = UIColor.white
-            material.lightingModel = .physicallyBased
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resetTracking()
+    }
+    
+    private func resetTracking() {
+        guard ARFaceTrackingConfiguration.isSupported else {
+            // Face tracking is not supported.
+            return
         }
-        faceNode = SCNNode(geometry: faceGeometory)
         let configuration = ARFaceTrackingConfiguration()
-        configuration.isLightEstimationEnabled = true
-        sceneView.session.run(configuration)
+        // ライトは3Dモデルのものを使います
+        configuration.isLightEstimationEnabled = false
+//        let options = [.resetTracking, .removeExistingAnchors]
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        sceneView.session.pause()
-    }
-    
+}
+
+extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        guard let faceAnchor = anchor as? ARFaceAnchor else { return  }
-        faceGeometory.update(from: faceAnchor.geometry)
-        node.addChildNode(faceNode)
+        guard anchor is ARFaceAnchor else { return }
+        
+        if node.childNodes.isEmpty, let content = sampeTest {
+            // ノードを読み込み
+            content.load()
+            
+            // 顔面にノードを追加
+            node.addChildNode(content)
+        }
     }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let faceAnchor = anchor as? ARFaceAnchor else { return  }
-        faceGeometory.update(from: faceAnchor.geometry)
-    }
-    
 }
